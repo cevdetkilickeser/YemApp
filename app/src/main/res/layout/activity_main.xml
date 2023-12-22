@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="mainActivity" type="com.cevdetkilickeser.yemapp.MainActivity" />
+        <variable name="user" type="String" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
+        tools:openDrawer="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarMainActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/mainColor"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivCart"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> mainActivity.cartClick()}"
+                android:src="@drawable/cart"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbarMainActivity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/toolbarMainActivity" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bottomNavCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:itemIconTint="@drawable/bottom_nav_selector"
+                    app:itemTextColor="@drawable/bottom_nav_selector"
+                    app:itemBackground="@color/white"
+                    app:menu="@menu/bottom_menu">
+
+                </com.google.android.material.bottomnavigation.BottomNavigationView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/navHostFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavCardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarMainActivity"
+                app:navGraph="@navigation/main_activity_nav" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNav"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_header"
+            app:menu="@menu/drawer_menu">
+
+            <TextView
+                android:id="@+id/textUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user}" />
+
+            <Button
+                android:id="@+id/buttonSignout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/mainColorDark"
+                android:onClick="@{() -> mainActivity.signOutClick()}"
+                android:text="Çıkış"
+                android:textSize="20sp"
+                app:icon="@drawable/logout"
+                app:iconGravity="textEnd"
+                app:iconSize="24dp" />
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

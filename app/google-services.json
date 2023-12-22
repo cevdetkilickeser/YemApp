@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "733612591449",
+    "firebase_url": "https://egitim-70078-default-rtdb.firebaseio.com",
+    "project_id": "egitim-70078",
+    "storage_bucket": "egitim-70078.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733612591449:android:86fbae823c185788daa448",
+        "android_client_info": {
+          "package_name": "com.cevdetkilickeser.fotografpaylasmafirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP0YfhjAxHgpuhMnApRR0dSW3ZfLHJNVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733612591449:android:53b2abc749b83327daa448",
+        "android_client_info": {
+          "package_name": "com.cevdetkilickeser.hepsiburada"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP0YfhjAxHgpuhMnApRR0dSW3ZfLHJNVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733612591449:android:908324602af06fa7daa448",
+        "android_client_info": {
+          "package_name": "com.cevdetkilickeser.yemapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP0YfhjAxHgpuhMnApRR0dSW3ZfLHJNVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
