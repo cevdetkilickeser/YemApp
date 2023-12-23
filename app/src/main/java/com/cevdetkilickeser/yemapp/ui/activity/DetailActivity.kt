@@ -66,13 +66,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun checkBoxClick(){
-        binding.checked?.let {
-            if (it){
-                viewModel.deleteFromFavs(takenFood)
-            }else{
-                viewModel.addToFavs(takenFood)
-            }
-        }
+        viewModel.checkBoxClick(takenFood,user)
     }
 
     fun buttonAddToCart (quantity:Int) {

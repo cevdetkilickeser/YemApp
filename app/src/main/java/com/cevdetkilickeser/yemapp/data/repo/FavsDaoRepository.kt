@@ -27,6 +27,17 @@ class FavsDaoRepository(var favsdao: FavsDao) {
         }
     }
 
+    fun checkBoxClick(takenFood:Foods,user:String){
+        val fav = Favs(takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
+        favListRepo.value?.let {
+            if (it.contains(fav)){
+                addToFavs(takenFood, user)
+            }else{
+                deleteFromFavs(takenFood,user)
+            }
+        }
+    }
+
     fun addToFavs(food: Foods, user:String){
         val job = CoroutineScope(Dispatchers.Main).launch {
             val liked = Favs(food.food_id,food.food_name,food.food_price,food.food_pic,user)

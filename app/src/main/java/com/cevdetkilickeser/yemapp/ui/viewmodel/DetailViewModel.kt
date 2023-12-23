@@ -32,13 +32,17 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
         favsrepo.getAllFavsRepo(user)
     }
 
+    fun checkBoxClick(takenFood: Foods,user: String){
+        favsrepo.checkBoxClick(takenFood,user)
+    }
+/*
     fun addToFavs(takenFood:Foods){
         favsrepo.addToFavs(takenFood,user)
     }
 
     fun deleteFromFavs(takenFood:Foods){
         favsrepo.deleteFromFavs(takenFood,user)
-    }
+    }*/
 
     fun addToCart(food: Foods, quantity: Int, user: String) {
         foodsrepo.addToCartRepo(food,quantity,user)

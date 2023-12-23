@@ -17,10 +17,6 @@ class SearchViewModel @Inject constructor (var foodsrepo: FoodsDaoRepository) : 
 
     var searchedFoodsLiveData = MutableLiveData<List<Foods>>()
 
-    init {
-        searchedFoodsLiveData = foodsrepo.makeEquelLists()
-    }
-
     fun searchFoods(searchQuery:String){
         viewModelScope.launch {
             searchedFoodsLiveData = foodsrepo.searchFood(searchQuery)

@@ -48,18 +48,6 @@ class SearchFragment : Fragment() {
         viewModel.searchedFoodsLiveData.observe(viewLifecycleOwner){
             searchAdapter = SearchAdapter(this,requireContext(),it)
             binding.searchAdapter = searchAdapter
-
-            var searchJob: Job? = null
-            binding.etSearchbox.addTextChangedListener {
-                searchJob?.cancel()
-                searchJob = lifecycleScope.launch{
-                    delay(500)
-                    viewModel.searchFoods(it.toString())
-                }
-            }
-
-            /*searchAdapter.setItems(it as ArrayList<Foods>)
-            binding.searchAdapter = searchAdapter*/
         }
 
         return binding.root

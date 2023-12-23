@@ -41,7 +41,6 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
                 if (response.body() != null){
                     val homeList = response.body()!!.foods
                     homeListRepo.value = homeList
-                    storeFoodsRoom(homeList)
                 }
             }
 

@@ -23,6 +23,7 @@ class HomeViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : Vie
 
     init {
         getHomeList()
+        homeList = foodsrepo.getLDHomeListRepo()
     }
 
     fun getHomeList(){

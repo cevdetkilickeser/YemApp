@@ -61,17 +61,4 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getHomeList()
-    }
-
-
-    /*
-        override fun onDestroy() {
-            super.onDestroy()
-            Log.e("şşş","onDestroyHomeFragment çalıştı")
-
-        }*/
 }
