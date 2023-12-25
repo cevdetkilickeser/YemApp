@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.cevdetkilickeser.yemapp.data.entity.Favs
 import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.room.FavsDao
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavsDaoRepository(var favsdao: FavsDao) {
+    val user = FirebaseAuth.getInstance().currentUser.toString()
+
     var favListRepo: MutableLiveData<List<Favs>>
 
     init {
@@ -20,35 +23,23 @@ class FavsDaoRepository(var favsdao: FavsDao) {
         return favListRepo
     }
 
-
-    fun getAllFavsRepo(user:String){
+    fun getAllFavsRepo(){
         val job = CoroutineScope(Dispatchers.Main).launch {
             favListRepo.value = favsdao.allFavs(user)
         }
     }
 
-    fun checkBoxClick(takenFood:Foods,user:String){
-        val fav = Favs(takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
-        favListRepo.value?.let {
-            if (it.contains(fav)){
-                addToFavs(takenFood, user)
-            }else{
-                deleteFromFavs(takenFood,user)
-            }
+    fun addToFavs(fav: Favs){
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            favsdao.addToFavs(fav)
+            getAllFavsRepo()
         }
     }
 
-    fun addToFavs(food: Foods, user:String){
+    fun deleteFromFavs(fav:Favs){
         val job = CoroutineScope(Dispatchers.Main).launch {
-            val liked = Favs(food.food_id,food.food_name,food.food_price,food.food_pic,user)
-            favsdao.addToFavs(liked)
-        }
-    }
-
-    fun deleteFromFavs(food:Foods,user:String){
-        val job = CoroutineScope(Dispatchers.Main).launch {
-            val disliked = Favs(food.food_id,food.food_name,food.food_price,food.food_pic,user)
-            favsdao.deleteFromFavs(disliked)
+            favsdao.deleteFromFavs(fav)
+            getAllFavsRepo()
         }
     }
 }

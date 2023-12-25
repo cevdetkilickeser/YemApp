@@ -3,12 +3,14 @@ package com.cevdetkilickeser.yemapp.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.cevdetkilickeser.yemapp.data.entity.Favs
 import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.data.repo.FavsDaoRepository
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.security.auth.callback.Callback
 
@@ -29,38 +31,49 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
     }
 
     fun getFavList(){
-        favsrepo.getAllFavsRepo(user)
+        viewModelScope.launch {
+            favsrepo.getAllFavsRepo()
+        }
     }
 
     fun checkBoxClick(takenFood: Foods,user: String){
-        favsrepo.checkBoxClick(takenFood,user)
+        viewModelScope.launch {
+            val fav = Favs(takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
+            if (favlist.value == null){
+                favsrepo.addToFavs(fav)
+                favlist = favsrepo.getLDFavListRepo()
+            }else{
+                if (favlist.value!!.contains(fav)){
+                    favsrepo.deleteFromFavs(fav)
+                    favlist = favsrepo.getLDFavListRepo()
+                }
+            }
+        }
     }
-/*
-    fun addToFavs(takenFood:Foods){
-        favsrepo.addToFavs(takenFood,user)
-    }
-
-    fun deleteFromFavs(takenFood:Foods){
-        favsrepo.deleteFromFavs(takenFood,user)
-    }*/
 
     fun addToCart(food: Foods, quantity: Int, user: String) {
-        foodsrepo.addToCartRepo(food,quantity,user)
-
+        viewModelScope.launch {
+            foodsrepo.addToCartRepo(food,quantity,user)
+        }
     }
 
     fun increaseQuantity(food: Foods, q: Int) {
-        foodsrepo.increaseQuantityRepo(food,q)
+        viewModelScope.launch {
+            foodsrepo.increaseQuantityRepo(food,q)
+        }
     }
 
     fun decreaseQuantity(food: Foods, q: Int) {
-        foodsrepo.decreaseQuantityRepo(food,q)
+        viewModelScope.launch {
+            foodsrepo.decreaseQuantityRepo(food,q)
+        }
     }
 
     fun cleanDetailFragment(){
-        foodsrepo.cleanDetailFragmentRepo()
-        quantityLast = foodsrepo.getQuantityRepo()
-        totalAmountLast = foodsrepo.getTotalAmountRepo()
-        Log.e("şş","cleanDetailFragmentViewModel çalıştı")
+        viewModelScope.launch {
+            foodsrepo.cleanDetailFragmentRepo()
+            quantityLast = foodsrepo.getQuantityRepo()
+            totalAmountLast = foodsrepo.getTotalAmountRepo()
+        }
     }
 }

@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.databinding.FragmentFavoriteBinding
 import com.cevdetkilickeser.yemapp.ui.adapter.FavoriteAdapter
 import com.cevdetkilickeser.yemapp.ui.adapter.HomeAdapter
 import com.cevdetkilickeser.yemapp.ui.viewmodel.FavoriteViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,16 +24,43 @@ class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var viewModel: FavoriteViewModel
+    private lateinit var favoriteAdapter: FavoriteAdapter
+    private lateinit var auth: FirebaseAuth
+    private lateinit var user: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_favorite, container, false)
 
         viewModel.favlist.observe(viewLifecycleOwner){
-            val favoriteAdapter = FavoriteAdapter(requireContext(),it,viewModel)
+            favoriteAdapter = FavoriteAdapter(requireContext(),it,viewModel)
             binding.favoriteAdapter = favoriteAdapter
         }
 
-        Log.e("şşş","onCreateView Çalıştı")
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ) = true
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val deletedFav = favoriteAdapter.likeList[position]
+                viewModel.deleteFromFav(deletedFav)
+
+                Snackbar.make(requireView(),"Deleted from favorites", Snackbar.LENGTH_LONG)
+                    .setAction("UNDO",
+                        View.OnClickListener {
+                            viewModel.addToFavs(deletedFav)
+                        }
+                    ).show()
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.rvLike)
 
         return binding.root
     }
@@ -37,11 +68,12 @@ class FavoriteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
+        user = auth.currentUser.toString()
 
         val tempViewModel: FavoriteViewModel by viewModels()
         viewModel = tempViewModel
 
-        Log.e("şşş","onCreate Çalıştı")
     }
 
     override fun onResume() {
