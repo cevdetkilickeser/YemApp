@@ -56,16 +56,23 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
+
 
     //ViewModel
+    val lifecycle_version = "2.6.2"
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     implementation("androidx.activity:activity-ktx:1.8.2")
 
+    implementation ("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
+    ksp ("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
     //DI-Hilt
-    implementation ("com.google.dagger:hilt-android:2.48.1")
-    ksp ("com.google.dagger:hilt-compiler:2.48.1")
+    implementation ("com.google.dagger:hilt-android:2.50")
+    ksp ("com.google.dagger:hilt-compiler:2.50")
 
     //Room
     val room_version = "2.6.1"
@@ -85,6 +92,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Lottie
-    implementation ("com.airbnb.android:lottie:6.2.0")
+    implementation ("com.airbnb.android:lottie:6.3.0")
 
 }

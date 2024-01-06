@@ -7,7 +7,8 @@ import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
 @Entity(tableName = "favs")
-data class Favs (@PrimaryKey
+data class Favs (@PrimaryKey(autoGenerate = true)
+                 @ColumnInfo(name = "id") @NotNull var id:Int,
                  @ColumnInfo(name = "food_id") @NotNull var food_id:Int,
                  @ColumnInfo(name = "food_name") @NotNull var food_name:String,
                  @ColumnInfo(name = "food_price") @NotNull var food_price:Int,

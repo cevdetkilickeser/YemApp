@@ -14,6 +14,7 @@ import com.cevdetkilickeser.yemapp.ui.activity.CartActivity
 import com.cevdetkilickeser.yemapp.ui.activity.SigninActivity
 import com.cevdetkilickeser.yemapp.ui.viewmodel.HomeViewModel
 import com.cevdetkilickeser.yemapp.ui.viewmodel.SearchViewModel
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     fun signOutClick () {
         auth.signOut()
+        User.user = ""
         val intent = Intent(this, SigninActivity::class.java)
         startActivity(intent)
         finish()

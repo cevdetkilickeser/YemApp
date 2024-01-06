@@ -19,7 +19,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : ViewModel() {
 
     var homeList = MutableLiveData<List<Foods>>()
-    var user = FirebaseAuth.getInstance().currentUser.toString()
 
     init {
         getHomeList()
@@ -27,11 +26,6 @@ class HomeViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : Vie
     }
 
     fun getHomeList(){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                foodsrepo.getAllFoodsRepo()
-                homeList = foodsrepo.getLDHomeListRepo()
-            }
-        }
+        foodsrepo.getAllFoodsRepo()
     }
 }

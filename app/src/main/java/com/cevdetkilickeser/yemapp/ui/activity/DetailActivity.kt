@@ -12,6 +12,7 @@ import com.cevdetkilickeser.yemapp.data.entity.Favs
 import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.databinding.ActivityDetailBinding
 import com.cevdetkilickeser.yemapp.ui.viewmodel.DetailViewModel
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,37 +23,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var viewModel: DetailViewModel
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: String
     private lateinit var takenFood: Foods
+    private lateinit var fav: Favs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_detail)
-        Log.e("şş","Detail Activity çalıştı")
 
-        takenFood = intent.getSerializableExtra("takenFood") as Foods
-        binding.foodObject = takenFood
-
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser.toString()
-
-        val tempViewModel: DetailViewModel by viewModels()
-        viewModel = tempViewModel
-
-        binding.detailActivity = this
-
-        viewModel.increaseQuantity(takenFood,0)
+        lateinitInitialize()
 
         Picasso.get().load("http://kasimadalan.pe.hu/yemekler/resimler/${takenFood.food_pic}").resize(500, 500).into(binding.ivFoodPic)
-
-        viewModel.favlist.observe(this){
-            val fav = Favs(takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
-            it?.let {
-                binding.checked = it.contains(fav)
-            }
-        }
-
 
         viewModel.quantityLast.observe(this){
             binding.quantity = it
@@ -62,16 +42,35 @@ class DetailActivity : AppCompatActivity() {
             binding.totalAmount = it
         }
 
+        if (viewModel.favList.value != null){
+            for (food in viewModel.favList.value!!){
+                if (food.food_id == takenFood.food_id){
+                    binding.checked = true
+                    break
+                }else{
+                    binding.checked = false
+                }
+            }
+        }else{
+            binding.checked = false
+        }
+
+
         setContentView(binding.root)
     }
 
     fun checkBoxClick(){
-        viewModel.checkBoxClick(takenFood,user)
+        if (binding.checked != true){
+            viewModel.addToFavs(fav)
+            binding.checked = true
+        }else{
+            viewModel.deleteFromFavs(fav)
+            binding.checked = false
+        }
     }
 
     fun buttonAddToCart (quantity:Int) {
         viewModel.addToCart(takenFood, quantity, user)
-        viewModel.cleanDetailFragment()
     }
 
     fun buttonIncreaseQuantity(quantity:Int){
@@ -84,6 +83,24 @@ class DetailActivity : AppCompatActivity() {
         viewModel.decreaseQuantity(takenFood,quantity)
         if (viewModel.quantityLast.value!!.toInt() == 1) Toast.makeText(this,"Minimum sipariş adedine ulaştınız.",
             Toast.LENGTH_SHORT).show()
+    }
+
+    private fun lateinitInitialize(){
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_detail)
+
+        binding.detailActivity = this
+
+        val tempViewModel: DetailViewModel by viewModels()
+        viewModel = tempViewModel
+
+        user = User.user
+
+        takenFood = intent.getSerializableExtra("takenFood") as Foods
+        binding.foodObject = takenFood
+
+        fav = Favs(0,takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
+
+        viewModel.increaseQuantity(takenFood,0)
     }
 
     override fun onDestroy() {

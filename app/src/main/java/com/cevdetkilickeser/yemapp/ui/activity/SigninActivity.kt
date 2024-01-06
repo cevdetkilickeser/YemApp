@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.cevdetkilickeser.yemapp.MainActivity
 import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.databinding.ActivitySigninBinding
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 
 class SigninActivity : AppCompatActivity() {
@@ -33,8 +34,9 @@ class SigninActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful){
-                        val currentUser = auth.currentUser?.email.toString()
+                        val currentUser = auth.currentUser!!.email.toString()
                         Toast.makeText(this,"Hoşgeldin: ${currentUser}", Toast.LENGTH_SHORT).show()
+                        User.user = currentUser
 
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)

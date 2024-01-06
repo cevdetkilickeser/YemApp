@@ -103,7 +103,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/textViewTotalPrice"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/remove_cart" />
+                    android:src="@drawable/remove_cart" />
 
                 <TextView
                     android:id="@+id/textViewTotalPrice"

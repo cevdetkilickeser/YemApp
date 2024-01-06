@@ -8,6 +8,7 @@ import com.cevdetkilickeser.yemapp.data.entity.Favs
 import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.data.repo.FavsDaoRepository
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,37 +19,31 @@ import javax.security.auth.callback.Callback
 
 class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var favsrepo: FavsDaoRepository) : ViewModel() {
 
+    var user = User.user
     var quantityLast = MutableLiveData<String>()
     var totalAmountLast = MutableLiveData<String>()
-    var favlist = MutableLiveData<List<Favs>>()
-    private var user = FirebaseAuth.getInstance().currentUser.toString()
-
+    var favList = MutableLiveData<List<Favs>>()
     init {
         quantityLast = foodsrepo.getQuantityRepo()
         totalAmountLast = foodsrepo.getTotalAmountRepo()
         getFavList()
-        favlist = favsrepo.getLDFavListRepo()
+        favList = favsrepo.getLDFavListRepo()
     }
 
     fun getFavList(){
         viewModelScope.launch {
-            favsrepo.getAllFavsRepo()
+            favsrepo.getAllFavsRepo(user)
         }
     }
 
-    fun checkBoxClick(takenFood: Foods,user: String){
-        viewModelScope.launch {
-            val fav = Favs(takenFood.food_id,takenFood.food_name,takenFood.food_price,takenFood.food_pic,user)
-            if (favlist.value == null){
-                favsrepo.addToFavs(fav)
-                favlist = favsrepo.getLDFavListRepo()
-            }else{
-                if (favlist.value!!.contains(fav)){
-                    favsrepo.deleteFromFavs(fav)
-                    favlist = favsrepo.getLDFavListRepo()
-                }
-            }
-        }
+    fun addToFavs(fav:Favs){
+        favsrepo.addToFavs(fav)
+        favList = favsrepo.getLDFavListRepo()
+    }
+
+    fun deleteFromFavs(fav:Favs){
+        favsrepo.deleteFromFavs(fav.user, fav.food_id)
+        favList = favsrepo.getLDFavListRepo()
     }
 
     fun addToCart(food: Foods, quantity: Int, user: String) {

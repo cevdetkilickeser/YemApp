@@ -9,6 +9,7 @@ import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,15 +18,25 @@ class SearchViewModel @Inject constructor (var foodsrepo: FoodsDaoRepository) : 
 
     var searchedFoodsLiveData = MutableLiveData<List<Foods>>()
 
+    init {
+        Log.e("şş","searchviewmodel init çalıştı")
+        observeSearchedFoods()
+        //loadSearchList()
+    }
+
     fun searchFoods(searchQuery:String){
         viewModelScope.launch {
-            searchedFoodsLiveData = foodsrepo.searchFood(searchQuery)
+            foodsrepo.searchFoods(searchQuery)
         }
     }
 
-    fun allFoodsRoom(){
-        viewModelScope.launch {
-
-        }
+    fun observeSearchedFoods(){
+        searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
     }
+
+    fun loadSearchList(){
+        foodsrepo.getSearchFoodRoom()
+        searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
+    }
+
 }

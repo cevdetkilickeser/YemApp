@@ -19,6 +19,7 @@ import com.cevdetkilickeser.yemapp.databinding.FragmentHomeBinding
 import com.cevdetkilickeser.yemapp.ui.adapter.HomeAdapter
 import com.cevdetkilickeser.yemapp.ui.viewmodel.HomeViewModel
 import com.cevdetkilickeser.yemapp.ui.viewmodel.SearchViewModel
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -60,5 +61,14 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //viewModel.getHomeList()
     }
 }

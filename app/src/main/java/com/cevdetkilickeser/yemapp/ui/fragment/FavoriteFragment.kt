@@ -15,6 +15,7 @@ import com.cevdetkilickeser.yemapp.databinding.FragmentFavoriteBinding
 import com.cevdetkilickeser.yemapp.ui.adapter.FavoriteAdapter
 import com.cevdetkilickeser.yemapp.ui.adapter.HomeAdapter
 import com.cevdetkilickeser.yemapp.ui.viewmodel.FavoriteViewModel
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +26,6 @@ class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var viewModel: FavoriteViewModel
     private lateinit var favoriteAdapter: FavoriteAdapter
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,7 +49,7 @@ class FavoriteFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val deletedFav = favoriteAdapter.likeList[position]
-                viewModel.deleteFromFav(deletedFav)
+                viewModel.deleteFromFav(deletedFav.user, deletedFav.food_id)
 
                 Snackbar.make(requireView(),"Deleted from favorites", Snackbar.LENGTH_LONG)
                     .setAction("UNDO",
@@ -68,8 +68,7 @@ class FavoriteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser.toString()
+        user = User.user
 
         val tempViewModel: FavoriteViewModel by viewModels()
         viewModel = tempViewModel

@@ -46,14 +46,28 @@ class SearchFragment : Fragment() {
         binding.searchFragment = this
 
         viewModel.searchedFoodsLiveData.observe(viewLifecycleOwner){
-            searchAdapter = SearchAdapter(this,requireContext(),it)
+            searchAdapter = SearchAdapter(requireContext(),it)
             binding.searchAdapter = searchAdapter
         }
 
+
+        binding.searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchFoods(newText)
+                return true
+            }
+
+        })
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
+        viewModel.observeSearchedFoods()
     }
+
 }

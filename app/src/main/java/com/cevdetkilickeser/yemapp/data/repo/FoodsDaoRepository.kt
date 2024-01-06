@@ -41,6 +41,7 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
                 if (response.body() != null){
                     val homeList = response.body()!!.foods
                     homeListRepo.value = homeList
+                    storeFoodsRoom(homeList)
                 }
             }
 
@@ -79,7 +80,9 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
         foodsdao.addToCart(food.food_name,food.food_pic,food.food_price,quantity,user).enqueue(object:
             Callback<CRUDAnswer> {
             override fun onResponse(call: Call<CRUDAnswer>?, response: Response<CRUDAnswer>) {
-
+                response.body()?.let {
+                    getAllFoodsRepo()
+                }
             }
 
             override fun onFailure(call: Call<CRUDAnswer>?, t: Throwable?) {}
@@ -127,29 +130,42 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
         totalAmountLastRepo = MutableLiveData<String>("0 ₺")
     }
 
-    suspend fun searchFood(searchQuery:String) : MutableLiveData<List<Foods>> {
-        val job = CoroutineScope(Dispatchers.Main).launch {
-            searchListRepo.value = searchdao.searchFood(searchQuery)
-        }
+    fun getLDSearchListRepo() : MutableLiveData<List<Foods>> {
         return searchListRepo
     }
 
-    suspend fun allFoodsRoom(){
+    fun getSearchFoodRoom(){
         val job = CoroutineScope(Dispatchers.Main).launch {
-            searchListRepo.value = searchdao.allFoodsRoom()
+            searchListRepo.postValue(searchdao.allFoodsRoom())
+        }
+    }
+
+    fun searchFoods(searchQuery:String){
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            searchListRepo.postValue(searchdao.searchFood(searchQuery))
         }
     }
 
     fun storeFoodsRoom(homeList: List<Foods>){
         val job = CoroutineScope(Dispatchers.Main).launch {
             searchdao.deleteFoodsRoom()
+            //logcatsearch(searchdao.allFoodsRoom())
             searchdao.insertFoodsRoom(*homeList.toTypedArray())
-            searchListRepo.value = homeList
+            //Log.e("şş","rooma yedeklendi")
+            //logcatsearch(searchdao.allFoodsRoom())
         }
     }
 
-    fun makeEquelLists() : MutableLiveData<List<Foods>> {
-        searchListRepo.value = homeListRepo.value
-        return searchListRepo
-    }
+    /*fun logcatsearch (list: List<Foods>) {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            if (list.isEmpty()){
+                Log.e("şş","Room database boş")
+            }else{
+                for (i in list){
+                    Log.e("şş","${i.food_id} - ${i.food_name} - ${i.food_price} - ${i.food_pic}")
+                }
+            }
+        }
+    }*/
+
 }

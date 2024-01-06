@@ -15,7 +15,7 @@ interface FavsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addToFavs(favs: Favs)
 
-    @Delete
-    suspend fun deleteFromFavs(favs: Favs)
+    @Query("DELETE FROM favs WHERE user = :user AND food_id = :food_id")
+    suspend fun deleteFromFavs(user: String, food_id: Int)
 
 }
