@@ -28,6 +28,7 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
         totalAmountLast = foodsrepo.getTotalAmountRepo()
         getFavList()
         favList = favsrepo.getLDFavListRepo()
+        Log.e("şş",user)
     }
 
     fun getFavList(){
@@ -46,7 +47,7 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
         favList = favsrepo.getLDFavListRepo()
     }
 
-    fun addToCart(food: Foods, quantity: Int, user: String) {
+    fun addToCart(food: Foods, quantity: Int) {
         viewModelScope.launch {
             foodsrepo.addToCartRepo(food,quantity,user)
         }

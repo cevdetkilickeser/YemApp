@@ -36,7 +36,6 @@ class SigninActivity : AppCompatActivity() {
                     if (it.isSuccessful){
                         val currentUser = auth.currentUser!!.email.toString()
                         Toast.makeText(this,"Hoşgeldin: ${currentUser}", Toast.LENGTH_SHORT).show()
-                        User.user = currentUser
 
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)

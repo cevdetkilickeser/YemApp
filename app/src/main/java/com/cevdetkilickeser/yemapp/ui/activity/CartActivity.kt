@@ -11,6 +11,7 @@ import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.databinding.ActivityCartBinding
 import com.cevdetkilickeser.yemapp.ui.adapter.CartAdapter
 import com.cevdetkilickeser.yemapp.ui.viewmodel.CartViewModel
+import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,15 +20,14 @@ class CartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCartBinding
     private lateinit var viewModel: CartViewModel
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_cart)
 
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser.toString()
+        user = User.user
+        Log.e("şş",user)
 
         val tempViewModel: CartViewModel by viewModels()
         viewModel = tempViewModel

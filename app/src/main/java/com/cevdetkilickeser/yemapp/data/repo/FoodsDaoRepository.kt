@@ -80,9 +80,7 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
         foodsdao.addToCart(food.food_name,food.food_pic,food.food_price,quantity,user).enqueue(object:
             Callback<CRUDAnswer> {
             override fun onResponse(call: Call<CRUDAnswer>?, response: Response<CRUDAnswer>) {
-                response.body()?.let {
-                    getAllFoodsRepo()
-                }
+
             }
 
             override fun onFailure(call: Call<CRUDAnswer>?, t: Throwable?) {}

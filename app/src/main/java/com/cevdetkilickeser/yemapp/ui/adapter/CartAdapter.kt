@@ -43,7 +43,7 @@ class CartAdapter(var mContext: Context,
         Picasso.get().load("http://kasimadalan.pe.hu/yemekler/resimler/${cart.food_pic}").into(b.ivFoodPicCard)
 
         b.ivDeleteFoodCard.setOnClickListener {
-            viewModel.deleteFromCart(cart.cart_food_id,user)
+            viewModel.deleteFromCart(cart.cart_food_id)
 
             if (cartList.size != 1){
                 viewModel.getCartList(user)

@@ -35,15 +35,16 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel:HomeViewModel
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: String
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser.toString()
+        User.user = FirebaseAuth.getInstance().currentUser!!.email.toString()
+        user = User.user
+
+        Log.e("şş",user)
 
         val tempViewModel:HomeViewModel by viewModels()
         viewModel = tempViewModel
@@ -59,16 +60,27 @@ class HomeFragment : Fragment() {
             homeAdapter = HomeAdapter( this,requireContext(),it,user)
             binding.homeAdapter = homeAdapter
         }
-
+        Log.e("şş","onCreateView")
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
+        Log.e("şş","onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        //viewModel.getHomeList()
+        Log.e("şş","onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("şş","onDestroy")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("şş","onPause")
     }
 }

@@ -70,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun buttonAddToCart (quantity:Int) {
-        viewModel.addToCart(takenFood, quantity, user)
+        viewModel.addToCart(takenFood, quantity)
     }
 
     fun buttonIncreaseQuantity(quantity:Int){
