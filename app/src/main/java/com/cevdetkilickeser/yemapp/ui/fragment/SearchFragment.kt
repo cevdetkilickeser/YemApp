@@ -52,8 +52,9 @@ class SearchFragment : Fragment() {
 
 
         binding.searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.searchFoods(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -67,7 +68,7 @@ class SearchFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.observeSearchedFoods()
+        //viewModel.observeSearchedFoods()
     }
 
 }

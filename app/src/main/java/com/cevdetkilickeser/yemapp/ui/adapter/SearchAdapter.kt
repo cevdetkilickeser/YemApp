@@ -46,6 +46,7 @@ class SearchAdapter(var mContext: Context,
     override fun onBindViewHolder(holder: CardHomeHolder, position: Int) {
         val food = searchList[position]
         val b = holder.binding
+        b.foodObject = food
         Picasso.get()
             .load("http://kasimadalan.pe.hu/yemekler/resimler/${food.food_pic}")
             .into(b.imageViewFood)
