@@ -132,7 +132,7 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
         return searchListRepo
     }
 
-    fun getSearchFoodRoom(){
+    fun getSearchFoodRoom() {
         val job = CoroutineScope(Dispatchers.Main).launch {
             searchListRepo.postValue(searchdao.allFoodsRoom())
         }
@@ -147,14 +147,14 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
     fun storeFoodsRoom(homeList: List<Foods>){
         val job = CoroutineScope(Dispatchers.Main).launch {
             searchdao.deleteFoodsRoom()
-            //logcatsearch(searchdao.allFoodsRoom())
+            logcatsearch(searchdao.allFoodsRoom())
             searchdao.insertFoodsRoom(*homeList.toTypedArray())
-            //Log.e("şş","rooma yedeklendi")
-            //logcatsearch(searchdao.allFoodsRoom())
+            Log.e("şş","rooma yedeklendi")
+            logcatsearch(searchdao.allFoodsRoom())
         }
     }
 
-    /*fun logcatsearch (list: List<Foods>) {
+    fun logcatsearch (list: List<Foods>) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             if (list.isEmpty()){
                 Log.e("şş","Room database boş")
@@ -164,6 +164,6 @@ class FoodsDaoRepository(var foodsdao: FoodsDao, var searchdao:SearchDao) {
                 }
             }
         }
-    }*/
+    }
 
 }

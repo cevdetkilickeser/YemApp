@@ -19,15 +19,29 @@ class SearchViewModel @Inject constructor (var foodsrepo: FoodsDaoRepository) : 
     var searchedFoodsLiveData = MutableLiveData<List<Foods>>()
 
     init {
-        Log.e("şş","searchviewmodel init çalıştı")
-        observeSearchedFoods()
-        //loadSearchList()
+        viewModelScope.launch {
+            Log.e("şş", "searchviewmodel init çalıştı")
+
+            // loadSearchList işlemini başlat
+            val searchListJob = launch { loadSearchList() }
+
+            // loadSearchList işlemi tamamlanana kadar bekle
+            searchListJob.join()
+
+            // observeSearchedFoods işlemini başlat
+            observeSearchedFoods()
+
+            // observeSearchedFoods işlemi tamamlanana kadar bekle
+            searchedFoodsLiveData.value?.let {
+                for (i in it) {
+                    Log.e("şş", "${i.food_name} - ${i.food_price} - ${i.food_pic}")
+                }
+            }
+        }
     }
 
     fun searchFoods(searchQuery:String){
-        viewModelScope.launch {
-            foodsrepo.searchFoods(searchQuery)
-        }
+        foodsrepo.searchFoods(searchQuery)
     }
 
     fun observeSearchedFoods(){
@@ -35,8 +49,12 @@ class SearchViewModel @Inject constructor (var foodsrepo: FoodsDaoRepository) : 
     }
 
     fun loadSearchList(){
-        foodsrepo.getSearchFoodRoom()
-        searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
+        viewModelScope.launch {
+            foodsrepo.getSearchFoodRoom()
+            searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
+            for (i in searchedFoodsLiveData.value!!){
+                Log.e("şş",i.food_name)
+            }
+        }
     }
-
 }
