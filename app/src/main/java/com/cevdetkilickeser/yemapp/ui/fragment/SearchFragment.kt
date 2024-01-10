@@ -30,7 +30,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
-    private lateinit var searchAdapter: SearchAdapter
+    private lateinit var searchList: List<Foods>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,23 +45,19 @@ class SearchFragment : Fragment() {
 
         binding.searchFragment = this
 
-        viewModel.searchedFoodsLiveData.observe(viewLifecycleOwner){
-            searchAdapter = SearchAdapter(requireContext(),it)
-            binding.searchAdapter = searchAdapter
-        }
+        searchList = viewModel.searchedFoodsLiveData.value!!
 
+        binding.searchAdapter = SearchAdapter(requireContext(),searchList)
 
         binding.searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.searchFoods(query)
-                return true
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.searchFoods(newText)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                binding.searchAdapter?.filter?.filter(newText)
                 return true
             }
-
         })
         return binding.root
     }

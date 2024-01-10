@@ -14,50 +14,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor (var foodsrepo: FoodsDaoRepository) : ViewModel() {
+class SearchViewModel @Inject constructor (foodsrepo: FoodsDaoRepository) : ViewModel() {
 
     var searchedFoodsLiveData = MutableLiveData<List<Foods>>()
 
     init {
-        loadSearchList()
-
-
-/*        viewModelScope.launch {
-            Log.e("şş", "searchviewmodel init çalıştı")
-
-            // loadSearchList işlemini başlat
-            val searchListJob = launch { loadSearchList() }
-
-            // loadSearchList işlemi tamamlanana kadar bekle
-            searchListJob.join()
-
-            // observeSearchedFoods işlemini başlat
-            observeSearchedFoods()
-
-            // observeSearchedFoods işlemi tamamlanana kadar bekle
-            searchedFoodsLiveData.value?.let {
-                for (i in it) {
-                    Log.e("şş", "${i.food_name} - ${i.food_price} - ${i.food_pic}")
-                }
-            }
-        }*/
+        searchedFoodsLiveData = foodsrepo.getLDHomeListRepo()
+        Log.e("şş", "searchviewmodel init çalıştı")
+        for (i in searchedFoodsLiveData.value!!){
+            Log.e("şş", i.food_name)
+        }
     }
 
-    fun searchFoods(searchQuery:String){
+/*    fun searchFoods(searchQuery:String){
         foodsrepo.searchFoods(searchQuery)
     }
 
-/*    fun observeSearchedFoods(){
+    fun observeSearchedFoods(){
         searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
     }*/
 
-    fun loadSearchList(){
-        //viewModelScope.launch {
-            foodsrepo.getSearchFoodRoom()
-            searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
-            //for (i in searchedFoodsLiveData.value!!){
-            //    Log.e("şş",i.food_name)
-            //}
-        //}
-    }
 }

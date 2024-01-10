@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -17,13 +19,34 @@ import com.cevdetkilickeser.yemapp.ui.fragment.SearchFragment
 import com.squareup.picasso.Picasso
 
 class SearchAdapter(var mContext: Context,
-                    var searchList: List<Foods>,
+                    var searchList: List<Foods>
 )
-    : RecyclerView.Adapter<SearchAdapter.CardHomeHolder>() {
+    : RecyclerView.Adapter<SearchAdapter.CardHomeHolder>(), Filterable {
 
-    fun setItems(newList: List<Foods>){
-        searchList = newList
-        notifyDataSetChanged()
+    private var filteredList: List<Foods> = searchList
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val filterResults = FilterResults()
+
+                if (constraint.isNullOrEmpty()) {
+                    filterResults.values = searchList
+                } else {
+                    val filteredItems = searchList.filter { item ->
+                        item.food_name.contains(constraint, ignoreCase = true)
+                    }
+                    filterResults.values = filteredItems
+                }
+
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredList = results?.values as List<Foods>
+                notifyDataSetChanged()
+            }
+        }
     }
 
     inner class CardHomeHolder(binding: CardHomeBinding) : RecyclerView.ViewHolder(binding.root){
@@ -40,13 +63,14 @@ class SearchAdapter(var mContext: Context,
     }
 
     override fun getItemCount(): Int {
-        return searchList.size
+        return filteredList.size
     }
 
     override fun onBindViewHolder(holder: CardHomeHolder, position: Int) {
-        val food = searchList[position]
+        val food = filteredList[position]
         val b = holder.binding
         b.foodObject = food
+
         Picasso.get()
             .load("http://kasimadalan.pe.hu/yemekler/resimler/${food.food_pic}")
             .into(b.imageViewFood)

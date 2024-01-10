@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Favoriler"
-                android:textColor="@color/black"
+                android:textColor="@color/mainColor"
                 android:textSize="24sp" />
         </androidx.cardview.widget.CardView>
 
