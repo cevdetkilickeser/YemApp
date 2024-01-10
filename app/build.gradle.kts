@@ -19,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId = "com.cevdetkilickeser.yemapp"
-        minSdk = 24
-        targetSdk = 33
+        minSdk = 28
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -57,9 +57,9 @@ dependencies {
 
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
 
     //ViewModel

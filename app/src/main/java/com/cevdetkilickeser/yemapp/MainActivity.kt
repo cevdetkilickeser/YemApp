@@ -3,6 +3,7 @@ package com.cevdetkilickeser.yemapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
@@ -22,17 +23,21 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.e("şş","OnCreate Main Activity")
 
         binding.mainActivity = this
 
-        auth = FirebaseAuth.getInstance()
+        user = User.user
 
-        binding.user = auth.currentUser!!.email.toString()
+        binding.user = user
+
+        auth = FirebaseAuth.getInstance()
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomNav,navHostFragment.navController)

@@ -20,18 +20,5 @@ class SearchViewModel @Inject constructor (foodsrepo: FoodsDaoRepository) : View
 
     init {
         searchedFoodsLiveData = foodsrepo.getLDHomeListRepo()
-        Log.e("şş", "searchviewmodel init çalıştı")
-        for (i in searchedFoodsLiveData.value!!){
-            Log.e("şş", i.food_name)
-        }
     }
-
-/*    fun searchFoods(searchQuery:String){
-        foodsrepo.searchFoods(searchQuery)
-    }
-
-    fun observeSearchedFoods(){
-        searchedFoodsLiveData = foodsrepo.getLDSearchListRepo()
-    }*/
-
 }

@@ -32,6 +32,4 @@ abstract class MyDatabase : RoomDatabase() {
 
     abstract fun getFavsDao() : FavsDao
 
-    abstract fun getSearchDao() : SearchDao
-
 }

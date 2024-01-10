@@ -1,14 +1,12 @@
 package com.cevdetkilickeser.yemapp.di
 
 import android.content.Context
-import androidx.room.Room
 import com.cevdetkilickeser.yemapp.data.repo.FavsDaoRepository
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
 import com.cevdetkilickeser.yemapp.retrofit.ApiUtils
 import com.cevdetkilickeser.yemapp.retrofit.FoodsDao
 import com.cevdetkilickeser.yemapp.room.MyDatabase
 import com.cevdetkilickeser.yemapp.room.FavsDao
-import com.cevdetkilickeser.yemapp.room.SearchDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,21 +19,14 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideFoodsDaoRepository(foodsdao: FoodsDao,searchDao: SearchDao) : FoodsDaoRepository {
-        return FoodsDaoRepository(foodsdao,searchDao)
+    fun provideFoodsDaoRepository(foodsdao: FoodsDao) : FoodsDaoRepository {
+        return FoodsDaoRepository(foodsdao)
     }
 
     @Provides
     @Singleton
     fun provideFoodsDao() : FoodsDao {
         return ApiUtils.getFoodsDao()
-    }
-
-    @Provides
-    @Singleton
-    fun providSearchDao(@ApplicationContext context: Context) : SearchDao {
-        val db = MyDatabase.buildDatabase(context)
-        return db.getSearchDao()
     }
 
     @Provides

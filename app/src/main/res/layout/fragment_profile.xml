@@ -41,9 +41,10 @@
             app:layout_constraintTop_toBottomOf="@+id/cvProfile">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNameProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:hint="İsim" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -58,9 +59,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:hint="E-Posta" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,13 +77,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:hint="Şifre" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
