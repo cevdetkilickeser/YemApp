@@ -39,7 +39,7 @@
                 android:paddingEnd="15dp"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="Ara..." />
+                app:queryHint="@string/search" />
 
         </LinearLayout>
 

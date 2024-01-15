@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import com.cevdetkilickeser.yemapp.MainActivity
 import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.databinding.ActivitySigninBinding
-import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 
 class SigninActivity : AppCompatActivity() {

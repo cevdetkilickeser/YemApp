@@ -1,5 +1,41 @@
 <resources>
     <string name="app_name">YemApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Splash-->
+    <string name="splash">CK Softs\nAll Rights Reserved</string>
+    <!--SignIn-SignUp-->
+    <string name="txt_signin">Sign In</string>
+    <string name="email">E-Mail</string>
+    <string name="password">Password</string>
+    <string name="btn_signin">SIGN IN</string>
+    <string name="no_account">No Account? </string>
+    <string name="create_one">Create One</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="txt_signup">SIGN UP</string>
+    <string name="btn_signup">SIGN UP</string>
+    <string name="already_account">Already Have an Account? </string>
+    <string name="logout">Log Out</string>
+    <!--Cart-->
+    <string name="my_cart">My Cart</string>
+    <string name="btn_order">CONFIRM CART</string>
+    <!--Detail-->
+    <string name="quantity">Quantity</string>
+    <string name="total_price">Total Price</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <!--CartHolder-->
+    <string name="price_holder">Price :</string>
+    <string name="quantity_holder">Quantity :</string>
+    <!--Profile-->
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="district">District</string>
+    <string name="city">City</string>
+    <string name="btn_update">UPDATE</string>
+    <!--Search-->
+    <string name="search...">Search…</string>
+    <!--Menus-->
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favourites">Favourites</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
 </resources>

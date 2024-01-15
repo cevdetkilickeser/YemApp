@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Sign In"
+            android:text="@string/txt_signin"
+            android:textColor="@color/mainColorDark"
             android:textSize="54sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,17 +32,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:layout_marginTop="24dp"
+            app:boxStrokeColor="@color/mainColorDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:startIconDrawable="@drawable/email">
+            app:startIconDrawable="@drawable/email"
+            app:passwordToggleTint="@color/mainColorDark"
+            app:startIconTint="@color/mainColorDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-Mail"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,18 +55,21 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:layout_marginTop="24dp"
+            app:boxStrokeColor="@color/mainColorDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
             app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/password">
+            app:startIconDrawable="@drawable/password"
+            app:passwordToggleTint="@color/mainColorDark"
+            app:startIconTint="@color/mainColorDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +80,7 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/mainColor"
             android:onClick="@{() -> signinActivity.buttonSignin(edEmail.getText().toString(),edPassword.getText().toString())}"
-            android:text="SIGN IN"
+            android:text="@string/btn_signin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="No Account? "
+            android:text="@string/no_account"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/textCreateOne"
             app:layout_constraintHorizontal_bias="0.5"
@@ -97,9 +104,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text=" Create One"
             android:onClick="@{() -> signinActivity.txtCreateOneClick()}"
-            android:textColor="#1887E7"
+            android:text="@string/create_one"
+            android:textColor="@color/mainColorDark"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

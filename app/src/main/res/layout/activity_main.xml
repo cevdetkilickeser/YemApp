@@ -68,7 +68,7 @@
                 </com.google.android.material.bottomnavigation.BottomNavigationView>
             </androidx.cardview.widget.CardView>
 
-            <androidx.fragment.app.FragmentContainerView
+                <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/navHostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="0dp"
@@ -106,7 +106,7 @@
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/mainColorDark"
                 android:onClick="@{() -> mainActivity.signOutClick()}"
-                android:text="Çıkış"
+                android:text="@string/logout"
                 android:textSize="20sp"
                 app:icon="@drawable/logout"
                 app:iconGravity="textEnd"

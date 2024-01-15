@@ -36,7 +36,7 @@ class CartAdapter(var mContext: Context,
     }
 
     override fun onBindViewHolder(holder: CardCartHolder, position: Int) {
-        val cart = cartList.get(position)
+        val cart = cartList[position]
         val b = holder.binding
         b.cartObject = cart
 
@@ -50,7 +50,6 @@ class CartAdapter(var mContext: Context,
             }else{
                 viewModel.cartList.value = emptyList()
             }
-
         }
     }
 }

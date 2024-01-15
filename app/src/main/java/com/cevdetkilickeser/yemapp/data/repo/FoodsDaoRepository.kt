@@ -55,6 +55,7 @@ class FoodsDaoRepository(var foodsdao: FoodsDao) {
                 }else{
                     cartListRepo.value = emptyList()
                 }
+                Log.e("şş", "$user Repo" )
             }
 
             override fun onFailure(call: Call<CartAnswer>?, t: Throwable?) {}

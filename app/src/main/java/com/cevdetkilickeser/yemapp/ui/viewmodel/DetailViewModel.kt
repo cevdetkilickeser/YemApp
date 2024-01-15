@@ -9,16 +9,13 @@ import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.data.repo.FavsDaoRepository
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
 import com.cevdetkilickeser.yemapp.utils.User
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
 @HiltViewModel
 
 class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var favsrepo: FavsDaoRepository) : ViewModel() {
-
     var user = User.user
     var quantityLast = MutableLiveData<String>()
     var totalAmountLast = MutableLiveData<String>()
@@ -28,7 +25,6 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
         totalAmountLast = foodsrepo.getTotalAmountRepo()
         getFavList()
         favList = favsrepo.getLDFavListRepo()
-        Log.e("şş",user)
     }
 
     fun getFavList(){
@@ -50,6 +46,7 @@ class DetailViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository, var
     fun addToCart(food: Foods, quantity: Int) {
         viewModelScope.launch {
             foodsrepo.addToCartRepo(food,quantity,user)
+            Log.e("şş","${food.food_name} - $quantity - $user")
         }
     }
 

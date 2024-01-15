@@ -3,8 +3,6 @@ package com.cevdetkilickeser.yemapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -13,8 +11,6 @@ import androidx.navigation.ui.NavigationUI
 import com.cevdetkilickeser.yemapp.databinding.ActivityMainBinding
 import com.cevdetkilickeser.yemapp.ui.activity.CartActivity
 import com.cevdetkilickeser.yemapp.ui.activity.SigninActivity
-import com.cevdetkilickeser.yemapp.ui.viewmodel.HomeViewModel
-import com.cevdetkilickeser.yemapp.ui.viewmodel.SearchViewModel
 import com.cevdetkilickeser.yemapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,11 +24,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        Log.e("şş","OnCreate Main Activity")
+
 
         binding.mainActivity = this
 
+        User.user = FirebaseAuth.getInstance().currentUser!!.email.toString()
         user = User.user
 
         binding.user = user
@@ -48,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        setContentView(binding.root)
     }
 
     override fun onBackPressed() {
@@ -60,7 +57,6 @@ class MainActivity : AppCompatActivity() {
 
     fun signOutClick () {
         auth.signOut()
-        User.user = ""
         val intent = Intent(this, SigninActivity::class.java)
         startActivity(intent)
         finish()

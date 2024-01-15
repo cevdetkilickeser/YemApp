@@ -5,7 +5,6 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
-
 }
 
 android {
@@ -14,7 +13,6 @@ android {
 
     buildFeatures {
         dataBinding = true
-        viewBinding = true
     }
 
     defaultConfig {
@@ -63,8 +61,8 @@ dependencies {
 
 
     //ViewModel
-    val lifecycle_version = "2.6.2"
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
+    val lifecycle_version = "2.7.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
     implementation("androidx.activity:activity-ktx:1.8.2")
 
     implementation ("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
@@ -81,7 +79,7 @@ dependencies {
 
     //Corotuine
     implementation ("androidx.room:room-ktx:$room_version")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
     //Picasso
     implementation ("com.squareup.picasso:picasso:2.71828")

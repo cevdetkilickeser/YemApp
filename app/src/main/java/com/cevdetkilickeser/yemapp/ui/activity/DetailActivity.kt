@@ -1,11 +1,9 @@
 package com.cevdetkilickeser.yemapp.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.data.entity.Favs
@@ -13,7 +11,6 @@ import com.cevdetkilickeser.yemapp.data.entity.Foods
 import com.cevdetkilickeser.yemapp.databinding.ActivityDetailBinding
 import com.cevdetkilickeser.yemapp.ui.viewmodel.DetailViewModel
 import com.cevdetkilickeser.yemapp.utils.User
-import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 

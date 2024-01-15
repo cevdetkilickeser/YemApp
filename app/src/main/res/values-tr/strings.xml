@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">YemApp</string>
+    <!--Splash-->
+    <string name="splash">CK Softs\nTüm Hakları Saklıdır.</string>
+    <!--SignIn-SignUp-->
+    <string name="txt_signin">Giriş Yap</string>
+    <string name="email">E-Posta</string>
+    <string name="password">Şifre</string>
+    <string name="btn_signin">GİRİŞ YAP</string>
+    <string name="no_account">Hesabınız Yok Mu? </string>
+    <string name="create_one">Hemen Oluşturun</string>
+    <string name="confirm_password">Şifre Tekrar</string>
+    <string name="txt_signup">ÜYE OL</string>
+    <string name="btn_signup">ÜYE OL</string>
+    <string name="already_account">Zaten Hesabınız Var Mı? </string>
+    <string name="logout">Çıkış</string>
+    <!--Cart-->
+    <string name="my_cart">Sepetim</string>
+    <string name="btn_order">SEPETİ ONAYLA</string>
+    <!--Detail-->
+    <string name="quantity">Adet</string>
+    <string name="total_price">Toplam Fiyat</string>
+    <string name="add_to_cart">SEPETE EKLE</string>
+    <!--CartHolder-->
+    <string name="price_holder">Fiyat :</string>
+    <string name="quantity_holder">Adet :</string>
+    <!--Profile-->
+    <string name="name">İsim</string>
+    <string name="address">Adres</string>
+    <string name="district">İlçe</string>
+    <string name="city">Şehir</string>
+    <string name="btn_update">GÜNCELLE</string>
+    <!--Search-->
+    <string name="search...">Ara…</string>
+    <!--Menus-->
+    <string name="home">Anasayfa</string>
+    <string name="search">Ara</string>
+    <string name="favourites">Favoriler</string>
+    <string name="profile">Profil</string>
+    <string name="settings">Ayarlar</string>
+</resources>

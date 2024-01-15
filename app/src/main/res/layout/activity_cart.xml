@@ -34,9 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sepetim"
+                android:text="@string/my_cart"
                 android:textColor="@color/mainColor"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 
 
@@ -59,9 +60,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="GÖNDER GELSİN"
             android:backgroundTint="@color/mainColor"
             android:onClick="@{() -> cartActivity.buttonOrder()}"
+            android:text="@string/btn_order"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTotalAmount"
             app:layout_constraintEnd_toEndOf="parent"

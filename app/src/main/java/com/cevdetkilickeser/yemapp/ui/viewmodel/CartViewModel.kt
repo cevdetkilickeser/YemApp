@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.cevdetkilickeser.yemapp.data.entity.Carts
 import com.cevdetkilickeser.yemapp.data.repo.FoodsDaoRepository
 import com.cevdetkilickeser.yemapp.utils.User
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,6 +16,7 @@ class CartViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : Vie
     var cartList = MutableLiveData<List<Carts>>()
 
     init {
+        Log.e("şş","$user cartViewModel init")
         getCartList(user)
         cartList = foodsrepo.getLDCartListRepo()
     }

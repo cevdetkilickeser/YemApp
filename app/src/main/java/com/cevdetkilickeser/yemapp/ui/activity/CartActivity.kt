@@ -3,16 +3,13 @@ package com.cevdetkilickeser.yemapp.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import com.cevdetkilickeser.yemapp.R
 import com.cevdetkilickeser.yemapp.databinding.ActivityCartBinding
 import com.cevdetkilickeser.yemapp.ui.adapter.CartAdapter
 import com.cevdetkilickeser.yemapp.ui.viewmodel.CartViewModel
 import com.cevdetkilickeser.yemapp.utils.User
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +24,7 @@ class CartActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_cart)
 
         user = User.user
-        Log.e("şş",user)
+        Log.e("şş", "$user cartActivity onCreate")
 
         val tempViewModel: CartViewModel by viewModels()
         viewModel = tempViewModel
