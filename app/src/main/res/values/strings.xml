@@ -19,6 +19,7 @@
     <string name="check_email_format">Check the e-mail format.</string>
     <string name="required_field">This field required.</string>
     <string name="psswrd_match_error">Passwords do not match.</string>
+    <string name="welcome">Welcome </string>
     <!--Cart-->
     <string name="my_cart">My Cart</string>
     <string name="btn_order">CONFIRM CART</string>

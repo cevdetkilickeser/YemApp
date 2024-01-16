@@ -19,6 +19,7 @@
     <string name="check_email_format">E-Posta formatını kontrol edin.</string>
     <string name="required_field">Bu alan zorunlu.</string>
     <string name="psswrd_match_error">Şifreler eşleşmedi.</string>
+    <string name="welcome">Hoşgeldin </string>
 
     <!--Cart-->
     <string name="my_cart">Sepetim</string>
