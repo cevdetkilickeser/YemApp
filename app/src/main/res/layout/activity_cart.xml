@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.CartFragment">
+        tools:context=".ui.fragment.CartFragment"
+        style="@style/background_style">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCart"
@@ -24,6 +25,7 @@
             android:clipToPadding="true"
             app:cardCornerRadius="5dp"
             app:cardElevation="3dp"
+            style="@style/background_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/my_cart"
-                android:textColor="@color/mainColor"
+                style="@style/red_text_style"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
@@ -60,9 +62,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/mainColor"
+            style="@style/cardView_style"
             android:onClick="@{() -> cartActivity.buttonOrder()}"
             android:text="@string/btn_order"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTotalAmount"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +78,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:text="@{totalAmount}"
+            style="@style/red_text_style"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

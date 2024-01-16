@@ -14,6 +14,11 @@
     <string name="btn_signup">SIGN UP</string>
     <string name="already_account">Already Have an Account? </string>
     <string name="logout">Log Out</string>
+    <string name="theme">Day/Light Mode</string>
+    <string name="sgnup_success">Congrats. You can sign in.</string>
+    <string name="check_email_format">Check the e-mail format.</string>
+    <string name="required_field">This field required.</string>
+    <string name="psswrd_match_error">Passwords do not match.</string>
     <!--Cart-->
     <string name="my_cart">My Cart</string>
     <string name="btn_order">CONFIRM CART</string>
@@ -29,7 +34,8 @@
     <string name="address">Address</string>
     <string name="district">District</string>
     <string name="city">City</string>
-    <string name="btn_update">UPDATE</string>
+    <string name="entry_info">Enter your infos</string>
+    <string name="btn_update">UPDATE INFO</string>
     <!--Search-->
     <string name="search...">Search…</string>
     <!--Menus-->

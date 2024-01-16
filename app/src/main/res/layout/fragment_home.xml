@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.HomeFragment">
+        tools:context=".ui.fragment.HomeFragment"
+        android:background="@android:color/transparent">
 
 
         <androidx.recyclerview.widget.RecyclerView

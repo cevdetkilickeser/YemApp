@@ -7,5 +7,10 @@
     <color name="letterColor1">#FFFFFFFF</color>
     <color name="letterColor2">#636363</color>
     <color name="searchbox">#E4E3E3</color>
+    <color name="blackBackground">#000000</color>
+    <color name="whiteBackground">#FFFFFF</color>
+    <color name="hintColor">#4A4A4A</color>
+    <color name="hintColorNight">#BAB6B6</color>
+
 
 </resources>

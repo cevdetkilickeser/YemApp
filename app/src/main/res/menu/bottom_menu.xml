@@ -5,13 +5,13 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
-        android:title="Anasayfa" />
+        android:title="@string/home" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/search"
-        android:title="Ara" />
+        android:title="@string/search" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/liked"
-        android:title="Favoriler" />
+        android:title="@string/favourites" />
 </menu>

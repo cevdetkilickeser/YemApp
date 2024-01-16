@@ -30,7 +30,8 @@ class SignupActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful){
                         auth.signOut()
-                        Toast.makeText(this,"Tebrikler, kayıt başarılı. Giriş yapabilirsiniz", Toast.LENGTH_SHORT).show()
+                        val toast = R.string.sgnup_success
+                        Toast.makeText(this,toast, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, SigninActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -47,25 +48,25 @@ class SignupActivity : AppCompatActivity() {
         binding.textInputLayoutConfirmPassword.error = null
 
         if (email == ""){
-            binding.textInputLayoutEmail.error = "Bu alan zorunlu"
+            binding.textInputLayoutEmail.error = getText(R.string.required_field)
             return false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.textInputLayoutEmail.error = "E-Posta formatını kontrol edin"
+            binding.textInputLayoutEmail.error = getText(R.string.check_email_format)
             return false
         }
         if (password == ""){
-            binding.textInputLayoutPassword.error = "Bu alan zorunlu"
+            binding.textInputLayoutPassword.error = getText(R.string.required_field)
             binding.textInputLayoutPassword.errorIconDrawable = null
             return false
         }
         if (confirmPassword == ""){
-            binding.textInputLayoutConfirmPassword.error = "Bu alan zorunlu"
+            binding.textInputLayoutConfirmPassword.error = getText(R.string.required_field)
             binding.textInputLayoutConfirmPassword.errorIconDrawable = null
             return false
         }
         if (password != confirmPassword){
-            binding.textInputLayoutConfirmPassword.error = "Şifreler eşleşmedi"
+            binding.textInputLayoutConfirmPassword.error = getText(R.string.psswrd_match_error)
             return false
         }
         return true

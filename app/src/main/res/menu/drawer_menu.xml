@@ -5,11 +5,7 @@
         android:id="@+id/profileFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Profil" />
-    <item
-        android:id="@+id/settingsFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="Ayarlar" />
+        android:title="@string/profile"
+        android:icon="@drawable/profile"/>
 
 </menu>

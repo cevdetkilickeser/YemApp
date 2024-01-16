@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.SignUpFragment">
+        tools:context=".ui.fragment.SignUpFragment"
+        style="@style/background_style">
 
         <TextView
             android:id="@+id/textView"
@@ -81,6 +82,7 @@
             android:backgroundTint="@color/mainColor"
             android:onClick="@{() -> signinActivity.buttonSignin(edEmail.getText().toString(),edPassword.getText().toString())}"
             android:text="@string/btn_signin"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

@@ -30,16 +30,15 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchview"
+                android:elevation="5dp"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/searchbox_background"
-                android:drawableTint="@color/letterColor2"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/search" />
+                app:queryHint="@string/search..." />
 
         </LinearLayout>
 

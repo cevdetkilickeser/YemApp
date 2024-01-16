@@ -69,7 +69,8 @@ class ProfileFragment : Fragment() {
                 Picasso.get().load(userInfo.image).into(binding.ivProfile)
             }else{
                 userInfo = UserInfo("","","","","")
-                Toast.makeText(requireContext(),"Belge Yok",Toast.LENGTH_SHORT).show()
+                val toast = R.string.entry_info
+                Toast.makeText(requireContext(),toast,Toast.LENGTH_SHORT).show()
             }
             binding.userInfo = userInfo
         }.addOnFailureListener { exception ->

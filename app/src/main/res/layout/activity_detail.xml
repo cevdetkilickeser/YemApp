@@ -16,12 +16,14 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         tools:context=".ui.fragment.DetailFragment">
 
         <ImageView
             android:id="@+id/ivFoodPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -34,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{foodObject.food_name}"
+            style="@style/black_text_style"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text='@{foodObject.food_price + " ₺"}'
+            style="@style/black_text_style"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -54,24 +58,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
 
         <TextView
-            android:id="@+id/tvFoodDetail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodPrice" />
-
-        <TextView
             android:id="@+id/tvFoodQuantity"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:text="@{quantity}"
+            style="@style/black_text_style"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
@@ -84,6 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{totalAmount}"
+            style="@style/black_text_style"
             android:textAlignment="center"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
@@ -97,13 +89,14 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/mainColor"
+            style="@style/button_style"
             android:onClick="@{() -> detailActivity.buttonIncreaseQuantity(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
             android:text="+"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -116,13 +109,14 @@
             android:layout_height="45dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/mainColor"
+            style="@style/button_style"
             android:onClick="@{() -> detailActivity.buttonDecreaseQuantity(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
             android:text="-"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,12 +129,14 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/mainColor"
+            style="@style/button_style"
             android:onClick="@{() -> detailActivity.buttonAddToCart(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
             android:text="SEPETE EKLE"
+            android:textColor="@color/white"
             app:icon="@drawable/add_to_cart"
             app:iconGravity="textStart"
             app:iconSize="32dp"
+            app:iconTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,11 +150,11 @@
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="8dp"
             android:text="@string/total_price"
-            android:textColor="@color/black"
+            style="@style/black_text_style"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/tvTotalPrice"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodPrice" />
 
         <TextView
             android:id="@+id/textView7"
@@ -167,12 +163,12 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="8dp"
             android:text="@string/quantity"
-            android:textColor="@color/black"
+            style="@style/black_text_style"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
             app:layout_constraintEnd_toEndOf="@+id/buttonAdd"
             app:layout_constraintStart_toStartOf="@+id/buttonRemove"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodPrice" />
 
         <CheckBox
             android:id="@+id/buttonLike"
@@ -181,12 +177,11 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:button="@drawable/checkbox_selector"
-            app:buttonTint="#FF0000"
             android:checked="@{checked}"
             android:onClick="@{() -> detailActivity.checkBoxClick()}"
+            app:buttonTint="#FF0000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

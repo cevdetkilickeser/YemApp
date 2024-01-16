@@ -2,11 +2,56 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.YemApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/mainColor</item>
+        <item name="colorPrimaryDark">@color/mainColorDark</item>
+        <item name="backgroundTint">@color/whiteBackground</item>
+        <item name="colorOnPrimary">@color/mainColor</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.YemApp" parent="Base.Theme.YemApp">
     <item name="android:statusBarColor">@color/mainColorDark</item>
     </style>
+
+    <style name="textView_style">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="background_style">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="bottom_nav_style">
+        <item name="android:background">@color/white</item>
+        <item name="itemIconTint">@color/mainColorDark</item>
+        <item name="itemTextColor">@color/mainColorDark</item>
+    </style>
+
+    <style name="drawer_nav_style">
+        <item name="android:background">@color/white</item>
+        <item name="itemIconTint">@color/mainColorDark</item>
+        <item name="itemTextColor">@color/mainColorDark</item>
+    </style>
+    
+    <style name="button_style">
+        <item name="backgroundTint">@color/mainColorDark</item>
+    </style>
+
+    <style name="dynght_img_style">
+        <item name="android:tint">@color/black</item>
+    </style>
+
+    <style name="red_text_style">
+        <item name="android:textColor">@color/mainColorDark</item>
+    </style>
+
+    <style name="black_text_style">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="cardView_style">
+        <item name="backgroundTint">@color/mainColorDark</item>
+    </style>
+
 
 </resources>
