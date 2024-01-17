@@ -16,7 +16,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        style="@style/background_style"
         tools:context=".ui.fragment.DetailFragment">
 
         <ImageView
@@ -86,10 +86,10 @@
 
         <Button
             android:id="@+id/buttonAdd"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="16dp"
             style="@style/button_style"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
             android:onClick="@{() -> detailActivity.buttonIncreaseQuantity(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
@@ -105,11 +105,11 @@
 
         <Button
             android:id="@+id/buttonRemove"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            style="@style/button_style"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            style="@style/button_style"
             android:onClick="@{() -> detailActivity.buttonDecreaseQuantity(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
@@ -124,14 +124,14 @@
 
         <Button
             android:id="@+id/buttonAddtoCart"
+            style="@style/button_style"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
-            style="@style/button_style"
             android:onClick="@{() -> detailActivity.buttonAddToCart(Integer.parseInt(tvFoodQuantity.getText().toString()))}"
-            android:text="SEPETE EKLE"
+            android:text="@string/add_to_cart"
             android:textColor="@color/white"
             app:icon="@drawable/add_to_cart"
             app:iconGravity="textStart"

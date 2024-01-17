@@ -1,6 +1,7 @@
 package com.cevdetkilickeser.yemapp.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -40,7 +41,7 @@ class ProfileFragment : Fragment() {
     private var choosenBitmap : Bitmap? = null
     private lateinit var user: String
     private lateinit var userInfo: UserInfo
-
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,9 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_profile, container, false)
 
+        progressBar = binding.progressBar
+        progressBar.visibility = View.VISIBLE
+
         binding.profileFragment = this
 
         database.collection("UserInfo").document(user).get().addOnSuccessListener { documentSnapshot ->
@@ -72,9 +76,11 @@ class ProfileFragment : Fragment() {
                 val toast = R.string.entry_info
                 Toast.makeText(requireContext(),toast,Toast.LENGTH_SHORT).show()
             }
+            progressBar.visibility = View.INVISIBLE
             binding.userInfo = userInfo
         }.addOnFailureListener { exception ->
             Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
+            progressBar.visibility = View.INVISIBLE
         }
         return binding.root
     }
@@ -82,6 +88,7 @@ class ProfileFragment : Fragment() {
     fun onClickButtonUpdate(name:String, addres:String, district:String, city:String){
         val referance = storage.reference
         val imageReferance = referance.child("profile_photos").child(user)
+        progressBar.visibility = View.VISIBLE
 
         if (choosenImage != null){
             imageReferance.putFile(choosenImage!!).addOnSuccessListener { taskSnapshot ->
@@ -95,6 +102,7 @@ class ProfileFragment : Fragment() {
 
                 }.addOnFailureListener { exception ->
                     Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
         }else{
@@ -119,11 +127,13 @@ class ProfileFragment : Fragment() {
     fun updateDatabase(){
         database.collection("UserInfo").document(user).set(userInfo).addOnCompleteListener { task ->
             if (task.isSuccessful){
-                Toast.makeText(requireContext(),"Bilgiler güncellendi",Toast.LENGTH_SHORT).show()
+                val toast = R.string.infos_updated
+                Toast.makeText(requireContext(),toast,Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener { exception ->
             Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
         }
+        progressBar.visibility = View.INVISIBLE
     }
 
     override fun onRequestPermissionsResult(

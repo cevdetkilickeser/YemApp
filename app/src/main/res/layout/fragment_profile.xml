@@ -119,18 +119,28 @@
 
             <Button
                 android:id="@+id/buttonUpdate"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 style="@style/button_style"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
                 android:onClick="@{() -> profileFragment.onClickButtonUpdate(etName.getText().toString(), etAddress.getText().toString(), etDistrict.getText().toString(), etCity.getText().toString())}"
                 android:text="@string/btn_update"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:indeterminateTint="@color/mainColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

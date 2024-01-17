@@ -68,18 +68,16 @@ class DetailActivity : AppCompatActivity() {
 
     fun buttonAddToCart (quantity:Int) {
         viewModel.addToCart(takenFood, quantity)
+        val toast = R.string.added_cart
+        Toast.makeText(this,toast,Toast.LENGTH_SHORT).show()
     }
 
     fun buttonIncreaseQuantity(quantity:Int){
         viewModel.increaseQuantity(takenFood,quantity)
-        if (viewModel.quantityLast.value!!.toInt() == 11) Toast.makeText(this,"Maksimum sipariş adedine ulaştınız.",
-            Toast.LENGTH_SHORT).show()
     }
 
     fun buttonDecreaseQuantity(quantity:Int){
         viewModel.decreaseQuantity(takenFood,quantity)
-        if (viewModel.quantityLast.value!!.toInt() == 1) Toast.makeText(this,"Minimum sipariş adedine ulaştınız.",
-            Toast.LENGTH_SHORT).show()
     }
 
     private fun lateinitInitialize(){

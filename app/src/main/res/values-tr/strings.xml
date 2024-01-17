@@ -19,15 +19,18 @@
     <string name="check_email_format">E-Posta formatını kontrol edin.</string>
     <string name="required_field">Bu alan zorunlu.</string>
     <string name="psswrd_match_error">Şifreler eşleşmedi.</string>
-    <string name="welcome">Hoşgeldin </string>
+    <string name="welcome">Hoşgeldin :</string>
 
     <!--Cart-->
     <string name="my_cart">Sepetim</string>
     <string name="btn_order">SEPETİ ONAYLA</string>
+    <string name="ordered">Sipariş Onaylandı</string>
+
     <!--Detail-->
     <string name="quantity">Adet</string>
     <string name="total_price">Toplam Fiyat</string>
     <string name="add_to_cart">SEPETE EKLE</string>
+    <string name="added_cart">Sepete Eklendi</string>
     <!--CartHolder-->
     <string name="price_holder">Fiyat :</string>
     <string name="quantity_holder">Adet :</string>
@@ -38,8 +41,12 @@
     <string name="city">Şehir</string>
     <string name="entry_info">Bilgilerinizi girin</string>
     <string name="btn_update">GÜNCELLE</string>
+    <string name="infos_updated">Bilgiler Güncellendi</string>
     <!--Search-->
     <string name="search...">Ara…</string>
+    <!--Favourites-->
+    <string name="undo">GERİ AL</string>
+    <string name="deleted_fav">Favorilerden silindi.</string>
     <!--Menus-->
     <string name="home">Anasayfa</string>
     <string name="search">Ara</string>

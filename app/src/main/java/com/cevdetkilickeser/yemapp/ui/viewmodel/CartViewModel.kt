@@ -16,7 +16,6 @@ class CartViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : Vie
     var cartList = MutableLiveData<List<Carts>>()
 
     init {
-        Log.e("şş","$user cartViewModel init")
         getCartList(user)
         cartList = foodsrepo.getLDCartListRepo()
     }
@@ -27,9 +26,5 @@ class CartViewModel @Inject constructor (var foodsrepo:FoodsDaoRepository) : Vie
 
     fun deleteFromCart(food_id:Int){
         foodsrepo.deleteFromCartRepo(food_id, user)
-    }
-
-    fun order(order: List<Carts>){
-        foodsrepo.orderRepo(order)
     }
 }

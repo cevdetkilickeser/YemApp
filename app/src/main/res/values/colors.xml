@@ -11,6 +11,6 @@
     <color name="whiteBackground">#FFFFFF</color>
     <color name="hintColor">#4A4A4A</color>
     <color name="hintColorNight">#BAB6B6</color>
-
+    <color name="pressed">#FFCD6161</color>
 
 </resources>

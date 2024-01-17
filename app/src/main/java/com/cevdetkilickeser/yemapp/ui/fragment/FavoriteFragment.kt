@@ -48,12 +48,16 @@ class FavoriteFragment : Fragment() {
                 val deletedFav = favoriteAdapter.likeList[position]
                 viewModel.deleteFromFav(deletedFav.user, deletedFav.food_id)
 
-                Snackbar.make(requireView(),"Deleted from favorites", Snackbar.LENGTH_LONG)
-                    .setAction("UNDO",
+                val snack = getText(R.string.deleted_fav)
+                val undo = getText(R.string.undo)
+                Snackbar.make(requireView(),snack, Snackbar.LENGTH_LONG)
+                    .setAction(undo,
                         View.OnClickListener {
                             viewModel.addToFavs(deletedFav)
                         }
-                    ).show()
+                    ).setActionTextColor(getResources().getColor(R.color.white))
+                    .setBackgroundTint(getResources().getColor(R.color.mainColorDark))
+                    .show()
             }
         }
 
@@ -70,10 +74,5 @@ class FavoriteFragment : Fragment() {
         val tempViewModel: FavoriteViewModel by viewModels()
         viewModel = tempViewModel
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getFavList()
     }
 }

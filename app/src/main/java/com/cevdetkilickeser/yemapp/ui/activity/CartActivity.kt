@@ -3,6 +3,7 @@ package com.cevdetkilickeser.yemapp.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.cevdetkilickeser.yemapp.R
@@ -24,7 +25,6 @@ class CartActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_cart)
 
         user = User.user
-        Log.e("şş", "$user cartActivity onCreate")
 
         val tempViewModel: CartViewModel by viewModels()
         viewModel = tempViewModel
@@ -51,7 +51,14 @@ class CartActivity : AppCompatActivity() {
     }
 
     fun buttonOrder(){
-        Log.e("şş","sipariş verildi")
+        if (viewModel.cartList.value != null){
+            val toast = R.string.ordered
+            Toast.makeText(this,toast,Toast.LENGTH_SHORT).show()
+            for (cart in viewModel.cartList.value!!){
+                viewModel.deleteFromCart(cart.cart_food_id)
+                viewModel.cartList.value = emptyList()
+            }
+        }
     }
 
     override fun onResume() {

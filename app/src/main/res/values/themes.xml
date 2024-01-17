@@ -3,9 +3,6 @@
     <style name="Base.Theme.YemApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/mainColor</item>
-        <item name="colorPrimaryDark">@color/mainColorDark</item>
-        <item name="backgroundTint">@color/whiteBackground</item>
-        <item name="colorOnPrimary">@color/mainColor</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
@@ -25,6 +22,8 @@
         <item name="android:background">@color/white</item>
         <item name="itemIconTint">@color/mainColorDark</item>
         <item name="itemTextColor">@color/mainColorDark</item>
+        <item name="itemRippleColor">@color/pressed</item>
+        <item name="itemStrokeColor">@color/pressed</item>
     </style>
 
     <style name="drawer_nav_style">
@@ -43,6 +42,7 @@
 
     <style name="red_text_style">
         <item name="android:textColor">@color/mainColorDark</item>
+        <item name="rippleColor">@color/pressed</item>
     </style>
 
     <style name="black_text_style">

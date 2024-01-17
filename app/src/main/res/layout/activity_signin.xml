@@ -76,10 +76,10 @@
 
         <Button
             android:id="@+id/buttonSignin"
+            style="@style/button_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/mainColor"
             android:onClick="@{() -> signinActivity.buttonSignin(edEmail.getText().toString(),edPassword.getText().toString())}"
             android:text="@string/btn_signin"
             android:textColor="@color/white"
@@ -110,6 +110,7 @@
             android:text="@string/create_one"
             android:textColor="@color/mainColorDark"
             android:textSize="16sp"
+            style="@style/red_text_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView2"

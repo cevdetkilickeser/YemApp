@@ -59,10 +59,10 @@
 
         <Button
             android:id="@+id/buttonApproveOrder"
+            style="@style/button_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginEnd="16dp"
-            style="@style/cardView_style"
             android:onClick="@{() -> cartActivity.buttonOrder()}"
             android:text="@string/btn_order"
             android:textColor="@color/white"

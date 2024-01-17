@@ -19,6 +19,7 @@ import com.cevdetkilickeser.yemapp.databinding.ActivityMainBinding
 import com.cevdetkilickeser.yemapp.databinding.DrawerHeaderBinding
 import com.cevdetkilickeser.yemapp.ui.activity.CartActivity
 import com.cevdetkilickeser.yemapp.ui.activity.SigninActivity
+import com.cevdetkilickeser.yemapp.ui.fragment.ProfileFragment
 import com.cevdetkilickeser.yemapp.utils.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -123,5 +124,10 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener { exception ->
             Toast.makeText(this,exception.localizedMessage,Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        downloadDrawerNavInfo()
     }
 }
