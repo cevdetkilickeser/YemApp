@@ -1,4 +1,4 @@
-# Food Delivery App
+# YemApp (Food Delivery App)
 Food Delivery App is an Android application developed using Kotlin and follows the MVVM (Model-View-ViewModel) architecture. The project utilizes Hilt for dependency injection, Retrofit with coroutines for network requests, Room for local data storage, Glide for image loading, and Firebase Authentication for user authentication.
 
 ## The Goal of the Project
